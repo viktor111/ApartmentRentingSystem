@@ -1,10 +1,12 @@
-﻿using ApartmentRentingSystem.Domain.Models;
-
-namespace ApartmentRentingSystem.Domain.Common
+﻿namespace ApartmentRentingSystem.Domain.Common
 {
+    using Models;
     using System;
-    using ApartmentRentingSystem.Domain.Exceptions;
+    using Exceptions;
 
+    /// <summary>
+    ///  Class for validating general exceptions
+    /// </summary>
     public static class Guard
     {
         public static void AgainstEmptyString<TException>(string value, string name = "Value")

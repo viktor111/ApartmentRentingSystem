@@ -6,9 +6,4 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\ApartmentAds" />
-      <Folder Include="Models\Landlords" />
-    </ItemGroup>
 </Project>

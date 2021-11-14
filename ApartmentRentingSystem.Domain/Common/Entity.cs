@@ -1,5 +1,11 @@
 ﻿namespace ApartmentRentingSystem.Domain.Common
 {
+    /// <summary>
+    ///     The base class for all domain entities.
+    /// </summary>
+    /// <typeparam name="TId">
+    ///     The type of the identifier.
+    /// </typeparam>
     public abstract class Entity<TId>
         where TId : struct
     {

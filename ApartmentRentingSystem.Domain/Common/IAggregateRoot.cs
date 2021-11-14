@@ -1,6 +1,6 @@
 ﻿namespace ApartmentRentingSystem.Domain.Common
 {
-    public class IAggregateRoot
+    public interface IAggregateRoot
     {
         
     }

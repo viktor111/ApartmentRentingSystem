@@ -1,15 +1,15 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace ApartmentRentingSystem.Domain.Common
+﻿namespace ApartmentRentingSystem.Domain.Common
 {
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     using System;
+
 
     public abstract class Enumeration : IComparable
     {
-         private static readonly ConcurrentDictionary<Type, IEnumerable<object>> EnumCache
+        private static readonly ConcurrentDictionary<Type, IEnumerable<object>> EnumCache
             = new ConcurrentDictionary<Type, IEnumerable<object>>();
 
         public int Value { get; }
@@ -57,7 +57,8 @@ namespace ApartmentRentingSystem.Domain.Common
             }
         }
 
-        private static T Parse<T, TValue>(TValue value, string description, Func<T, bool> predicate) where T : Enumeration
+        private static T Parse<T, TValue>(TValue value, string description, Func<T, bool> predicate)
+            where T : Enumeration
         {
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
@@ -84,6 +85,6 @@ namespace ApartmentRentingSystem.Domain.Common
 
         public override int GetHashCode() => (this.GetType().ToString() + this.Value).GetHashCode();
 
-        public int CompareTo(object? other) => this.Value.CompareTo(((Enumeration)other!).Value);
+        public int CompareTo(object? other) => this.Value.CompareTo(((Enumeration) other!).Value);
     }
 }
