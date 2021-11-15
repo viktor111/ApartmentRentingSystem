@@ -20,7 +20,7 @@
             public const int MaxAddressLength = 300;
             public const int MinDescriptionLength = 10;
             public const int MaxDescriptionLength = 1000;
-            public const decimal MinPrice = 1;
+            public const decimal MinPrice = 0;
             public const decimal MaxPrice = 1000000;
             public const int MinSquareMeters = 1;
             public const int MaxSquareMeters = 10000;
