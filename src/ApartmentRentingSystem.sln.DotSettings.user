@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=645e35b1_002D234c_002D42ea_002Db5b5_002Df06ee0c67f87/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ChangeAvailabilityShouldMutateIsAvailable" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ChangeAvailabilityShouldMutateIsAvailable&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldUpdateDescription&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldUpdateNumberOfRooms&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldThrowExceptionWhenDescriptionIsNull&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldThrowExceptionWhenDescriptionExceedsMaxLength&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldThrowExceptionWhenDescriptionMinLengthIsNotMet&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs.ShouldThrowExceptionWhenUpdateDescriptionMinLengthIsNotMet&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.Landlords.LandlordSpecs.ShouldSaveApartmentAd&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::446F749D-C819-4DB1-BE59-407AA6F97BC4::.NETCoreApp,Version=v3.1::ApartmentRentingSystem.Domain.Models.ApartmentAds.ApartmentAdSpecs&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
