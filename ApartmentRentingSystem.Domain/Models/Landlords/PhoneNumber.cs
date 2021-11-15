@@ -10,8 +10,7 @@
     {
         internal PhoneNumber(string countryCode, string number)
         {
-            this.ValidateNumber(number);
-            this.ValidateCountryCode(countryCode);
+            this.Validate(countryCode, number);
             
             if (!Regex.IsMatch(countryCode, CountryCodeRegularExpression))
             {
@@ -25,7 +24,13 @@
         public string CountryCode { get; }
 
         public string Number { get; }
-        
+
+        private void Validate(string countryCode, string number)
+        {
+            this.ValidateNumber(number);
+            this.ValidateCountryCode(countryCode);
+        }
+
         private void ValidateNumber(string phoneNumber)
         {
             Guard.ForStringLength<InvalidPhoneNumberException>(
