@@ -5,21 +5,122 @@
     using Xunit;
     using System;
     using Exceptions;
-
+    
+    using static  ModelConstants.ApartmentAds;
 
     public class ApartmentAdSpecs
     {
         [Fact]
-        public void ChangeAvailabilityShouldMutateIsAvailable()
+        public void ShouldUpdateTitle()
         {
             // Arrange
-            var carAd = A.Dummy<ApartmentAd>();
-
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var tittle = "Title";
+            
             // Act
-            carAd.ChangeAvailability();
-
+            apartmentAd.UpdateTitle(tittle);
+            
             // Assert
-            carAd.IsAvailable.Should().BeFalse();
+            apartmentAd.Title.Should().Be(tittle);
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenTitleIsNull()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var tittle = string.Empty;
+            
+            // Act
+            Action action = () => apartmentAd.UpdateTitle(tittle);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+
+        [Fact]
+        public void ShouldThrowExceptionWhenUpdateTitleExceedsMaxLength()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var random = new Bogus.Randomizer();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateTitle(random.String(MaxTitleLength + 1));
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenUpdateTitleIsLessThanMinLength()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var random = new Bogus.Randomizer();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateTitle(random.String(MinTitleLength - 1));
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        // Tests for address
+        [Fact]
+        public void ShouldUpdateAddress()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var address = "Address";
+            
+            // Act
+            apartmentAd.UpdateAddress(address);
+            
+            // Assert
+            apartmentAd.Address.Should().Be(address);
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenAddressIsNull()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var address = string.Empty;
+            
+            // Act
+            Action action = () => apartmentAd.UpdateAddress(address);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenUpdateAddressExceedsMaxLength()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var random = new Bogus.Randomizer();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateAddress(random.String(MaxAddressLength + 1));
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenUpdateAddressIsLessThanMinLength()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var random = new Bogus.Randomizer();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateAddress(random.String(MinAddressLength - 1));
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
         }
 
         [Theory]
@@ -28,13 +129,13 @@
         public void ShouldUpdateDescription(string description)
         {
             // Arrange
-            var carAd = A.Dummy<ApartmentAd>();
+            var apartmentAd = A.Dummy<ApartmentAd>();
 
             // Act
-            carAd.UpdateDescription(description);
+            apartmentAd.UpdateDescription(description);
 
             // Assert
-            carAd.Description.Should().Be(description);
+            apartmentAd.Description.Should().Be(description);
         }
 
         [Theory]
@@ -42,10 +143,10 @@
         public void ShouldThrowExceptionWhenUpdateDescriptionIsNull(string description)
         {
             // Arrange
-            var carAd = A.Dummy<ApartmentAd>();
+            var apartmentAd = A.Dummy<ApartmentAd>();
 
             // Act
-            Action act = () => carAd.UpdateDescription(description);
+            Action act = () => apartmentAd.UpdateDescription(description);
 
             // Assert
             act.Should().Throw<InvalidApartmentAdException>();
@@ -55,11 +156,11 @@
         public void ShouldThrowExceptionWhenUpdateDescriptionExceedsMaxLength()
         {
             // Arrange
-            var carAd = A.Dummy<ApartmentAd>();
+            var apartmentAd = A.Dummy<ApartmentAd>();
             var random = new Bogus.Randomizer();
 
             // Act
-            Action act = () => carAd.UpdateDescription(random.String(1001));
+            Action act = () => apartmentAd.UpdateDescription(random.String(1001));
 
             // Assert
             act.Should().Throw<InvalidApartmentAdException>();
@@ -69,13 +170,112 @@
         public void ShouldThrowExceptionWhenUpdateDescriptionMinLengthIsNotMet()
         {
             // Arrange
-            var carAd = A.Dummy<ApartmentAd>();
+            var apartmentAd = A.Dummy<ApartmentAd>();
 
             // Act
-            Action act = () => carAd.UpdateDescription("awwe");
+            Action act = () => apartmentAd.UpdateDescription("awwe");
 
             // Assert
             act.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        // Test price
+        [Fact]
+        public void ShouldUpdatePrice()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var price = 1.6m;
+            
+            // Act
+            apartmentAd.UpdatePrice(price);
+            
+            // Assert
+            apartmentAd.Price.Should().Be(price);
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenPriceIsLessThanMinPrice()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var price = A.Dummy<decimal>();
+            
+            // Act
+            Action action = () => apartmentAd.UpdatePrice(price);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenPriceIsGreaterThanMaxPrice()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var price = A.Dummy<decimal>();
+            
+            // Act
+            Action action = () => apartmentAd.UpdatePrice(price);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        // Test squareMeters
+        [Fact]
+        public void ShouldUpdateSquareMeters()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var squareMeters = 2;
+            
+            // Act
+            apartmentAd.UpdateSquareMeters(squareMeters);
+            
+            // Assert
+            apartmentAd.SquareMeters.Should().Be(squareMeters);
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenSquareMetersIsLessThanMinSquareMeters()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var squareMeters = A.Dummy<int>();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateSquareMeters(squareMeters);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+        
+        [Fact]
+        public void ShouldThrowExceptionWhenSquareMetersIsGreaterThanMaxSquareMeters()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+            var squareMeters = A.Dummy<int>();
+            
+            // Act
+            Action action = () => apartmentAd.UpdateSquareMeters(squareMeters);
+            
+            // Assert
+            action.Should().Throw<InvalidApartmentAdException>();
+        }
+
+        [Fact]
+        public void ChangeAvailabilityShouldMutateIsAvailable()
+        {
+            // Arrange
+            var apartmentAd = A.Dummy<ApartmentAd>();
+
+            // Act
+            apartmentAd.ChangeAvailability();
+
+            // Assert
+            apartmentAd.IsAvailable.Should().BeFalse();
         }
     }
 }

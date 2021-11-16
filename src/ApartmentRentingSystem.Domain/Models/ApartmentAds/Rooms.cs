@@ -48,24 +48,28 @@ namespace ApartmentRentingSystem.Domain.Models.ApartmentAds
         public Rooms UpdateNumberOfRooms(int numberOfRooms)
         {
             ValidateNumberOfRooms(numberOfRooms);
+            this.NumberOfRooms = numberOfRooms;
             return this;
         }
         
         public Rooms UpdateNumberOfBathrooms(int numberOfBathrooms)
         {
             ValidateNumberOfBathrooms(numberOfBathrooms);
+            this.NumberOfBathrooms = numberOfBathrooms;
             return this;
         }
         
         public Rooms UpdateNumberOfBedrooms(int numberOfBedrooms)
         {
             ValidateNumberOfBedrooms(numberOfBedrooms);
+            this.NumberOfBedrooms = numberOfBedrooms;
             return this;
         }
         
         public Rooms UpdateNumberOfBalconies(int numberOfBalconies)
         {
             ValidateNumberOfBalconies(numberOfBalconies);
+            this.NumberOfBalconies = numberOfBalconies;
             return this;
         }
         

@@ -10,8 +10,8 @@
         public void EntitiesWithEqualIdsShouldBeEqual()
         {
             // Arrange
-            var first = new Landlord("First", new PhoneNumber("First", "First")).SetId(1);
-            var second = new Landlord("Second", new PhoneNumber("Second", "Second")).SetId(1);
+            var first = new Landlord("First", new PhoneNumber("+123", "First")).SetId(1);
+            var second = new Landlord("Second", new PhoneNumber("+321", "Second")).SetId(1);
 
             // Act
             var result = first == second;
@@ -24,8 +24,8 @@
         public void EntitiesWithDifferentIdsShouldNotBeEqual()
         {
             // Arrange
-            var first = new Landlord("First", new PhoneNumber("First","First")).SetId(1);
-            var second = new Landlord("Second", new PhoneNumber("Second","Second")).SetId(2);
+            var first = new Landlord("First", new PhoneNumber("+123","First")).SetId(1);
+            var second = new Landlord("Second", new PhoneNumber("+321","Second")).SetId(2);
 
             // Act
             var result = first == second;
