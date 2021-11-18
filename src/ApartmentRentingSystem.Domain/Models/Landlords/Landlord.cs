@@ -1,12 +1,11 @@
-﻿using System.Linq;
-
-namespace ApartmentRentingSystem.Domain.Models.Landlords
+﻿namespace ApartmentRentingSystem.Domain.Models.Landlords
 {
     using System.Collections.Generic;
     using Common;
     using Exceptions;
     using ApartmentAds;
     using static ModelConstants.Common;
+    using System.Linq;
 
     public class Landlord : Entity<int>, IAggregateRoot
     {
@@ -27,7 +26,7 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
         }
 
         public string Name { get; private set; }
-        
+
         public PhoneNumber PhoneNumber { get; private set; }
 
         public Landlord UpdateName(string name)
@@ -37,14 +36,14 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
 
             return this;
         }
-        
+
         public Landlord UpdatePhoneNumber(PhoneNumber phoneNumber)
         {
             this.PhoneNumber = phoneNumber;
 
             return this;
         }
-        
+
         public IReadOnlyCollection<ApartmentAd> ApartmentAds => this.apartmentAds.ToList().AsReadOnly();
 
         public void AddApartmentAd(ApartmentAd apartmentAd)
