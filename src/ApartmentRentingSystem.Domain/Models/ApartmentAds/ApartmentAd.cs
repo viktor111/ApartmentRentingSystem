@@ -9,7 +9,7 @@
     {
         internal ApartmentAd(
             string title,
-            string address,
+            Address address,
             string description,
             decimal price,
             int squareMeters,
@@ -18,7 +18,6 @@
             bool isAvailable)
         {
             Validate(title, 
-                address, 
                 description, 
                 price, 
                 squareMeters);
@@ -35,7 +34,7 @@
         
         private ApartmentAd(
             string title,
-            string address,
+            Address address,
             string description,
             decimal price,
             int squareMeters,
@@ -54,7 +53,7 @@
 
         public string Title { get; set; }
 
-        public string Address { get; private set; }
+        public Address Address { get; private set; }
 
         public string Description { get; private set; }
 
@@ -74,14 +73,7 @@
             this.Title = title;
             return this;
         }
-        
-        public ApartmentAd UpdateAddress(string address)
-        {
-            ValidateAddress(address);
-            this.Address = address;
-            return this;
-        }
-        
+
         public ApartmentAd UpdateDescription(string description)
         {
             ValidateDescription(description);
@@ -122,13 +114,11 @@
         }
 
         private void Validate(string title, 
-            string address, 
             string description, 
             decimal price, 
             int squareMeters)
         {
             ValidateTitle(title);
-            ValidateAddress(address);
             ValidateDescription(description);
             ValidatePrice(price);
             ValidateSquareMeters(squareMeters);
@@ -146,20 +136,7 @@
                 MaxTitleLength,
                 nameof(this.Title));
         }
-        
-        private void ValidateAddress(string address)
-        {
-            Guard.AgainstEmptyString<InvalidApartmentAdException>(
-                address,
-                nameof(this.Address));
 
-            Guard.ForStringLength<InvalidApartmentAdException>(
-                address,
-                MinAddressLength,
-                MaxAddressLength,
-                nameof(this.Address));
-        }
-        
         private void ValidateDescription(string description)
         {
             Guard.AgainstEmptyString<InvalidApartmentAdException>(

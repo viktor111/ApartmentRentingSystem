@@ -1,13 +1,11 @@
-﻿using System;
-using ApartmentRentingSystem.Domain.Exceptions;
-using FluentAssertions;
-
-namespace ApartmentRentingSystem.Domain.Models.Landlords
+﻿namespace ApartmentRentingSystem.Domain.Models.Landlords
 {
     using ApartmentAds;
     using FakeItEasy;
     using Xunit;
-    
+    using System;
+    using Exceptions;
+    using FluentAssertions;
     using static ModelConstants.Common;
 
     public class LandlordSpecs
@@ -21,11 +19,11 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
 
             //Act
             landlord.AddApartmentAd(apartmentAd);
-            
+
             //Assert
             landlord.ApartmentAds.Should().Contain(apartmentAd);
         }
-        
+
         [Theory]
         [InlineData(null)]
         public void ShouldThrowExceptionWhenNameIsNull(string name)
@@ -39,7 +37,7 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
             //Assert
             act.Should().Throw<InvalidLandlordException>();
         }
-        
+
         [Fact]
         public void ShouldUpdateName()
         {
@@ -53,7 +51,7 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
             //Assert
             landlord.Name.Should().Be(newName);
         }
-        
+
         [Fact]
         public void ShouldThrowExceptionWhenNameIsTooShort()
         {
@@ -67,7 +65,7 @@ namespace ApartmentRentingSystem.Domain.Models.Landlords
             //Assert
             act.Should().Throw<InvalidLandlordException>();
         }
-        
+
         // test name max
         [Fact]
         public void ShouldThrowExceptionWhenNameIsTooLong()

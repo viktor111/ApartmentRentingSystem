@@ -6,8 +6,7 @@ namespace ApartmentRentingSystem.Domain.Factories.Landlords
     using Exceptions;
     using FluentAssertions;
     using Xunit;
-
-
+    
     public class LandlordFactorySpecs
     {
         [Fact]

@@ -47,6 +47,14 @@
             public const string CountryCodeRegularExpression = @"\+[0-9]*";
         }
 
-        
+        public class Address
+        {
+            public const int MinCountryLength = 2;
+            public const int MaxCountryLength = 50;
+            public const int MinCityLength = 2;
+            public const int MaxCityLength = 50;
+            public const int MinStreetLength = 2;
+            public const int MaxStreetLength = 100;
+        }
     }
 }

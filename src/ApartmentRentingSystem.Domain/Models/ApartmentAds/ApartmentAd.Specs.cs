@@ -65,63 +65,6 @@
             // Assert
             action.Should().Throw<InvalidApartmentAdException>();
         }
-        
-        // Tests for address
-        [Fact]
-        public void ShouldUpdateAddress()
-        {
-            // Arrange
-            var apartmentAd = A.Dummy<ApartmentAd>();
-            var address = "Address";
-            
-            // Act
-            apartmentAd.UpdateAddress(address);
-            
-            // Assert
-            apartmentAd.Address.Should().Be(address);
-        }
-        
-        [Fact]
-        public void ShouldThrowExceptionWhenAddressIsNull()
-        {
-            // Arrange
-            var apartmentAd = A.Dummy<ApartmentAd>();
-            var address = string.Empty;
-            
-            // Act
-            Action action = () => apartmentAd.UpdateAddress(address);
-            
-            // Assert
-            action.Should().Throw<InvalidApartmentAdException>();
-        }
-        
-        [Fact]
-        public void ShouldThrowExceptionWhenUpdateAddressExceedsMaxLength()
-        {
-            // Arrange
-            var apartmentAd = A.Dummy<ApartmentAd>();
-            var random = new Bogus.Randomizer();
-            
-            // Act
-            Action action = () => apartmentAd.UpdateAddress(random.String(MaxAddressLength + 1));
-            
-            // Assert
-            action.Should().Throw<InvalidApartmentAdException>();
-        }
-        
-        [Fact]
-        public void ShouldThrowExceptionWhenUpdateAddressIsLessThanMinLength()
-        {
-            // Arrange
-            var apartmentAd = A.Dummy<ApartmentAd>();
-            var random = new Bogus.Randomizer();
-            
-            // Act
-            Action action = () => apartmentAd.UpdateAddress(random.String(MinAddressLength - 1));
-            
-            // Assert
-            action.Should().Throw<InvalidApartmentAdException>();
-        }
 
         [Theory]
         [InlineData("testertestertester")]

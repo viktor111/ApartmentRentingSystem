@@ -16,14 +16,26 @@
             {
                 throw new InvalidPhoneNumberException("Country Code must start with a '+' and contain only digits afterwards.");
             }
-            
+
+            this.CountryCode = countryCode;
             this.Number = number;
+        }
+
+        public string CountryCode { get; private set; }
+
+        public string Number { get; private set; }
+
+        public void UpdateCountryCode(string countryCode)
+        {
+            this.Validate(countryCode, this.Number);
             this.CountryCode = countryCode;
         }
 
-        public string CountryCode { get; }
-
-        public string Number { get; }
+        public void UpdateNumber(string number)
+        {
+            this.Validate(this.CountryCode, number);
+            this.Number = number;
+        }
 
         private void Validate(string countryCode, string number)
         {

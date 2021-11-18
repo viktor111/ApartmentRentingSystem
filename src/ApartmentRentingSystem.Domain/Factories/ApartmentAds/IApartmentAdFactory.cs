@@ -6,8 +6,12 @@
     {
         IApartmentAdFactory WithTitle(string title);
 
-        IApartmentAdFactory WithAddress(string address);
+        IApartmentAdFactory WithAddress(string country, 
+            string city, 
+            string street);
         
+        IApartmentAdFactory WithAddress(Address address);
+
         IApartmentAdFactory WithDescription(string description);
         
         IApartmentAdFactory WithPrice(decimal price);

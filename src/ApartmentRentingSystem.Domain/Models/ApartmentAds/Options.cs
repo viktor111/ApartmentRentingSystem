@@ -1,8 +1,6 @@
 ﻿namespace ApartmentRentingSystem.Domain.Models.ApartmentAds
 {
     using Common;
-    using Exceptions;
-
 
     public class Options : ValueObject
     {
@@ -21,6 +19,20 @@
             bool hasOven,
             bool hasCoffeeMachine)
         {
+            this.HasFurniture = hasFurniture;
+            this.HasParking = hasParking;
+            this.HasGarden = hasGarden;
+            this.HasLift = hasLift;
+            this.HasAirConditioner = hasAirConditioner;
+            this.HasTv = hasTv;
+            this.HasInternet = hasInternet;
+            this.HasPhone = hasPhone;
+            this.HasWashingMachine = hasWashingMachine;
+            this.HasDishwasher = hasDishwasher;
+            this.HasRefrigerator = hasRefrigerator;
+            this.HasMicrowave = hasMicrowave;
+            this.HasOven = hasOven;
+            this.HasCoffeeMachine = hasCoffeeMachine;
         }
 
         public bool HasFurniture { get; }

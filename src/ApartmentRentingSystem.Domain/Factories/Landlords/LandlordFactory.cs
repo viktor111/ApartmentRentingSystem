@@ -2,8 +2,7 @@
 {
     using Exceptions;
     using Models.Landlords;
-
-
+    
     public class LandlordFactory : ILandlordFactory
     {
         private string landlordName = default!;

@@ -6,13 +6,14 @@
     public class ApartmentAdFactory : IApartmentAdFactory
     {
         private string apartmentAdTitle = default!;
-        private string apartmentAdAddress = default!;
+        private Address apartmentAdAddress = default!;
         private string apartmentAdDescription = default!;
         private decimal apartmentAdPrice = default!;
         private int apartmentAdSquareMeters = default!;
         private Options apartmentAdOptions = default!;
         private Rooms apartmentAdRooms = default!;
 
+        private bool addressIsSet = false;
         private bool optionsSet = false;
         private bool roomsSet = false;
 
@@ -21,10 +22,18 @@
             this.apartmentAdTitle = title;
             return this;
         }
+        
+        public IApartmentAdFactory WithAddress(string country, string city, string street)
+        {
+            this.apartmentAdAddress = new Address(country, city, street);
+            this.addressIsSet = true;
+            return this;
+        }
 
-        public IApartmentAdFactory WithAddress(string address)
+        public IApartmentAdFactory WithAddress(Address address)
         {
             this.apartmentAdAddress = address;
+            this.addressIsSet = true;
             return this;
         }
 
@@ -108,9 +117,9 @@
 
         public ApartmentAd Build()
         {
-            if (!this.optionsSet || !this.roomsSet)
+            if (!this.optionsSet || !this.roomsSet || !this.addressIsSet)
             {
-                throw new InvalidApartmentAdException("Apartment ad must have options and rooms set.");
+                throw new InvalidApartmentAdException("Apartment ad must have options, rooms and address set.");
             }
 
             return new ApartmentAd(this.apartmentAdTitle,

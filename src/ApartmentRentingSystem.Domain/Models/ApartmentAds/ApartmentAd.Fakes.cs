@@ -67,9 +67,17 @@
                         f.Random.Number(1, 9)))
                     .Generate();
 
+                var address = new Faker<Address>()
+                    .CustomInstantiator(f => new Address(
+                        f.Random.String(11),
+                        f.Random.String(11),
+                        f.Random.String(11)
+                    ))
+                    .Generate();
+
                 var result = new Faker<ApartmentAd>()
                     .CustomInstantiator(f => new ApartmentAd(f.Random.String(11),
-                        f.Random.String(11),
+                        address,
                         f.Random.String(11), f.Random.Decimal(1, 100), f.Random.Int(1, 100), options, rooms,
                         isAvailable))
                     .Generate()

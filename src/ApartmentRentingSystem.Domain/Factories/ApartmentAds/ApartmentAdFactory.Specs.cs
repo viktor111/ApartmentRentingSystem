@@ -60,7 +60,7 @@
             // Act
             var apartmentAd = apartmentAdFactory
                 .WithTitle("testop")
-                .WithAddress("testuyiyu")
+                .WithAddress(new Address("TesCountry", "TestCity", "TestStreet"))
                 .WithDescription("tesyuiyuit")
                 .WithPrice(2m)
                 .WithSquareMeters(23)
