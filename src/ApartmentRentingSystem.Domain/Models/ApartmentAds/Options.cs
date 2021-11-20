@@ -4,7 +4,7 @@
 
     public class Options : ValueObject
     {
-        public Options(bool hasFurniture,
+        internal Options(bool hasFurniture,
             bool hasParking,
             bool hasGarden,
             bool hasLift,
@@ -34,6 +34,8 @@
             this.HasOven = hasOven;
             this.HasCoffeeMachine = hasCoffeeMachine;
         }
+
+        private Options() { }
 
         public bool HasFurniture { get; }
 

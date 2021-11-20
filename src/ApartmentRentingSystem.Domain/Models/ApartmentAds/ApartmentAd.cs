@@ -34,19 +34,18 @@
         
         private ApartmentAd(
             string title,
-            Address address,
             string description,
             decimal price,
             int squareMeters,
             bool isAvailable)
         {
             this.Title = title;
-            this.Address = address;
             this.Description = description;
             this.Price = price;
             this.SquareMeters = squareMeters;
             this.IsAvailable = isAvailable;
 
+            this.Address = default!;
             this.Options = default!;
             this.Rooms = default!;
         }
