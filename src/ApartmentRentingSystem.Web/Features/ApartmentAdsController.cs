@@ -1,26 +1,29 @@
-﻿namespace ApartmentRentingSystem.Web.Features
+﻿using System.Linq;
+using ApartmentRentingSystem.Application.Contracts;
+
+namespace ApartmentRentingSystem.Web.Features
 {
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
-    using System.Linq;
-    using Domain.Factories.Landlords;
     using Domain.Models.ApartmentAds;
-    using Domain.Models.Landlords;
 
 
     [ApiController]
     [Route("api/[controller]")]
     public class ApartmentAdsController : ControllerBase
     {
-        private static readonly Landlord landlord = new LandlordFactory()
-            .WithName("TESTNAME")
-            .WithPhoneNumber("+356", "08956713")
-            .Build();
+        private readonly IRepository<ApartmentAd> carAds;
+        
+        public ApartmentAdsController(IRepository<ApartmentAd> carAds)
+        {
+            this.carAds = carAds;
+        }
 
         [HttpGet]
         public IEnumerable<ApartmentAd> Get()
         {
-            return landlord.ApartmentAds
+            return this.carAds
+                .All()
                 .Where(a => a.IsAvailable);
         }
     }

@@ -1,7 +1,3 @@
-
-
-using ApartmentRentingSystem.Infrastructure;
-
 namespace ApartmentRentingSystem.Startup
 {
     using Microsoft.AspNetCore.Builder;
@@ -10,11 +6,12 @@ namespace ApartmentRentingSystem.Startup
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    
+    using Infrastructure;
+
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        
+
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
@@ -41,7 +38,7 @@ namespace ApartmentRentingSystem.Startup
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapControllers();
             });
         }
     }

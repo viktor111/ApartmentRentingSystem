@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ApartmentRentingSystem.Domain\ApartmentRentingSystem.Domain.csproj" />
+      <ProjectReference Include="..\ApartmentRentingSystem.Application\ApartmentRentingSystem.Application.csproj" />
     </ItemGroup>
 
 </Project>

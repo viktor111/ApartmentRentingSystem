@@ -1,6 +1,4 @@
-﻿
-
-namespace ApartmentRentingSystem.Infrastructure.Persistence
+﻿namespace ApartmentRentingSystem.Infrastructure.Persistence
 {
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
