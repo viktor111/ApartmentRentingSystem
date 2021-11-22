@@ -1,4 +1,7 @@
 
+using System.Reflection;
+using MediatR;
+
 namespace ApartmentRentingSystem.Application
 {
     using Microsoft.Extensions.Configuration;
@@ -12,6 +15,7 @@ namespace ApartmentRentingSystem.Application
             => services
                 .Configure<ApplicationSettings>(
                     configuration.GetSection(nameof(ApplicationSettings)), 
-                    options => options.BindNonPublicProperties = true);
+                    options => options.BindNonPublicProperties = true)
+                .AddMediatR(Assembly.GetExecutingAssembly());
     }
 }

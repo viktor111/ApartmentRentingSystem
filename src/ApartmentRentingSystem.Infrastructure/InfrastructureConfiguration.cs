@@ -1,4 +1,6 @@
-﻿namespace ApartmentRentingSystem.Infrastructure
+﻿using ApartmentRentingSystem.Application.Features.Identity;
+
+namespace ApartmentRentingSystem.Infrastructure
 {
     using System.Text;
     using Application;
@@ -20,6 +22,7 @@
             IConfiguration configuration)
             => services
                 .AddDatabase(configuration)
+                .AddRepositories()
                 .AddIdentity(configuration);
 
         private static IServiceCollection AddDatabase(
@@ -31,8 +34,16 @@
                         configuration.GetConnectionString("DefaultConnection"),
                         b => b.MigrationsAssembly(typeof(ApartmentRentalDbContext)
                             .Assembly.FullName)))
-                .AddTransient<IInitializer, ApartmentRentalDbInitializer>()
-                .AddTransient(typeof(IRepository<>), typeof(DataRepository<>));
+                .AddTransient<IInitializer, ApartmentRentalDbInitializer>();
+
+        internal static IServiceCollection AddRepositories(this IServiceCollection services)
+            => services
+                .Scan(scan => scan
+                    .FromCallingAssembly()
+                    .AddClasses(classes => classes
+                        .AssignableTo(typeof(IRepository<>)))
+                    .AsMatchingInterface()
+                    .WithTransientLifetime());
 
         private static IServiceCollection AddIdentity(
             this IServiceCollection services,

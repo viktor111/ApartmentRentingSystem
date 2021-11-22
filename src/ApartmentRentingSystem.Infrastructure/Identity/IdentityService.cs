@@ -1,4 +1,6 @@
-﻿namespace ApartmentRentingSystem.Infrastructure.Identity
+﻿using ApartmentRentingSystem.Application.Features.Identity.Commands.LoginUser;
+
+namespace ApartmentRentingSystem.Infrastructure.Identity
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
