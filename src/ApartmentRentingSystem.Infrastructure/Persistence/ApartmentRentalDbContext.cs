@@ -1,11 +1,15 @@
-﻿namespace ApartmentRentingSystem.Infrastructure.Persistence
+﻿
+
+namespace ApartmentRentingSystem.Infrastructure.Persistence
 {
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
     using Domain.Models.ApartmentAds;
     using Domain.Models.Landlords;
+    using Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    internal class ApartmentRentalDbContext : DbContext
+    internal class ApartmentRentalDbContext : IdentityDbContext<User>
     {
         public ApartmentRentalDbContext(DbContextOptions<ApartmentRentalDbContext> options)
             : base(options)

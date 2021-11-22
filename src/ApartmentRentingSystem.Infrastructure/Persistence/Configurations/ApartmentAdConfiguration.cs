@@ -5,7 +5,6 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     
     using static Domain.Models.ModelConstants.ApartmentAds;
-    using static Domain.Models.ModelConstants.Address;
     using static Domain.Models.ModelConstants.Rooms;
 
     internal class ApartmentAdConfiguration : IEntityTypeConfiguration<ApartmentAd>
