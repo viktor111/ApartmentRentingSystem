@@ -1,3 +1,8 @@
+using System;
+using System.Linq.Expressions;
+using ApartmentRentingSystem.Domain.Exceptions;
+using ApartmentRentingSystem.Infrastructure.Identity;
+
 namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
 {
     using System.Collections.Generic;
@@ -32,6 +37,8 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
                 ))
                 .ToListAsync(cancellationToken);
         }
+        
+       
 
         public async Task<int> Total(CancellationToken cancellationToken = default)
         {
@@ -44,5 +51,7 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
             => this
                 .All()
                 .Where(a => a.IsAvailable);
+        
+        
     }
 }

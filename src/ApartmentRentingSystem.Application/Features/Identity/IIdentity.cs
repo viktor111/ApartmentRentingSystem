@@ -7,6 +7,6 @@ namespace ApartmentRentingSystem.Application.Features.Identity
     {
         Task<Result> Register(UserInputModel userInput);
 
-        Task<Result<LoginOutputModel>> Login(UserInputModel userInput);
+        Task<Result<LoginSuccessModel>> Login(UserInputModel userInput);
     }
 }

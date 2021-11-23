@@ -9,8 +9,7 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds
 
     public interface IApartmentAdRepository : IRepository<ApartmentAd>
     {
-        Task<IEnumerable<ApartmnetAdListingModel>> GetApartmentAdListings(
-            string? title = default,
+        Task<IEnumerable<ApartmnetAdListingModel>> GetApartmentAdListings(string? title = default,
             CancellationToken cancellationToken = default);
 
         Task<int> Total(CancellationToken cancellationToken = default);

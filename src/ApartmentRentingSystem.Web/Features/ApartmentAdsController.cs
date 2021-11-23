@@ -9,7 +9,7 @@
     public class ApartmentAdsController : ApiController
     {
         [HttpGet]
-        public async Task<ActionResult<SearchApartmentAdsOutputModel>> Get([FromQuery] SearchApartmentAdsQuery query)
+        public async Task<ActionResult<SearchApartmentAdsOutputModel>> Search([FromQuery] SearchApartmentAdsQuery query)
         {
             return await this.Mediator.Send(query);
         }

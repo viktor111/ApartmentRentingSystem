@@ -9,21 +9,21 @@
     internal abstract class DataRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IAggregateRoot
     {
-        private readonly ApartmentRentalDbContext db;
-
         protected DataRepository(ApartmentRentalDbContext db)
         {
-            this.db = db;
+            this.Data = db;
         }
+        
+        protected ApartmentRentalDbContext Data { get; }
 
         protected IQueryable<TEntity> All()
         {
-            return this.db.Set<TEntity>();
+            return this.Data.Set<TEntity>();
         }
 
         protected Task<int> SaveChanges(CancellationToken cancellationToken = default)
         {
-            return this.db.SaveChangesAsync(cancellationToken);
+            return this.Data.SaveChangesAsync(cancellationToken);
         }
     }
 }

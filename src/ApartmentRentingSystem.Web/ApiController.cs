@@ -7,7 +7,9 @@ namespace ApartmentRentingSystem.Web
     using Microsoft.Extensions.DependencyInjection;
     using Common;
 
-
+    
+    [ApiController]
+    [Route("[controller]")]
     public abstract class ApiController : ControllerBase
     {
         private IMediator? mediator;
