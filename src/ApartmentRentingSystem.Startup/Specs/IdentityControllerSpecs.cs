@@ -1,14 +1,36 @@
-using ApartmentRentingSystem.Application.Features.Identity.Commands.LoginUser;
-using ApartmentRentingSystem.Infrastructure.Identity;
-using ApartmentRentingSystem.Web.Features;
-using FluentAssertions;
-using MyTested.AspNetCore.Mvc;
-using Xunit;
-
 namespace ApartmentRentingSystem.Startup.Specs
 {
+    using Application.Features.Identity.Commands.CreateUser;
+    using Application.Features.Identity.Commands.LoginUser;
+    using Infrastructure.Identity;
+    using Web.Features;
+    using FluentAssertions;
+    using MyTested.AspNetCore.Mvc;
+    using Xunit;
+
+
     public class IdentityControllerSpecs
     {
+        [Fact]
+        public void RegisterShouldHaveCorrectAttributes()
+        {
+            MyController<IdentityController>
+                .Calling(c => c.Register(With.Default<CreateUserCommand>()))
+                .ShouldHave()
+                .ActionAttributes(attr => attr
+                    .RestrictingForHttpMethod(HttpMethod.Post));
+        }
+
+        [Fact]
+        public void LoginShouldHaveCorrectAttributes()
+        {
+            MyController<IdentityController>
+                .Calling(c => c.Login(With.Default<LoginUserCommand>()))
+                .ShouldHave()
+                .ActionAttributes(attr => attr
+                    .RestrictingForHttpMethod(HttpMethod.Post));
+        }
+
         [Theory]
         [InlineData(
             IdentityFakes.TestEmail,
@@ -27,7 +49,11 @@ namespace ApartmentRentingSystem.Startup.Specs
                         Password = password
                     }))
                 .To<IdentityController>(c => c
-                    .Login(new LoginUserCommand(email, password)))
+                    .Login(new LoginUserCommand
+                    {
+                        Email = email,
+                        Password = password
+                    }))
                 .Which()
                 .ShouldReturn()
                 .ActionResult<LoginOutputModel>(result => result

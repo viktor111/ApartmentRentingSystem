@@ -5,8 +5,9 @@
     using System.Threading.Tasks;
     using Domain.Common;
 
-    public interface IRepository<out TEntity>
+    public interface IRepository<in TEntity>
         where TEntity : IAggregateRoot
     {
+        Task Save(TEntity entity, CancellationToken cancellationToken = default);
     }
 }

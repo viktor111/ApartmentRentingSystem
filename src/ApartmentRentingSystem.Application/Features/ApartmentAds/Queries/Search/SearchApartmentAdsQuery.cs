@@ -13,7 +13,9 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Queries.Searc
             private readonly IApartmentAdRepository apartmentAdRepository;
 
             public SearchCarAdsQueryHandler(IApartmentAdRepository apartmentAdRepository)
-                => this.apartmentAdRepository = apartmentAdRepository;
+            {
+                this.apartmentAdRepository = apartmentAdRepository;
+            }
 
             public async Task<SearchApartmentAdsOutputModel> Handle(
                 SearchApartmentAdsQuery request,

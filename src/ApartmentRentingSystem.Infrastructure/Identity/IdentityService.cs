@@ -1,30 +1,25 @@
-﻿using ApartmentRentingSystem.Application.Features.Identity.Commands.LoginUser;
-
-namespace ApartmentRentingSystem.Infrastructure.Identity
+﻿namespace ApartmentRentingSystem.Infrastructure.Identity
 {
-    using System;
-    using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
-    using System.Security.Claims;
-    using System.Text;
     using System.Threading.Tasks;
     using Application;
-    using Application.Contracts;
     using Application.Features.Identity;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Options;
-    using Microsoft.IdentityModel.Tokens;
+    using Application.Common;
+    using Application.Features.Identity.Commands;
+    using Application.Features.Identity.Commands.LoginUser;
 
     public class IdentityService : IIdentity
     {
         private const string InvalidErrorMessage = "Invalid credentials.";
-        
+
         private readonly UserManager<User> userManager;
         private readonly ApplicationSettings applicationSettings;
         private readonly IJwtTokenGenerator jwtTokenGenerator;
 
         public IdentityService(
-            UserManager<User> userManager, 
+            UserManager<User> userManager,
             IOptions<ApplicationSettings> applicationSettings,
             IJwtTokenGenerator jwtTokenGenerator)
         {
@@ -33,7 +28,7 @@ namespace ApartmentRentingSystem.Infrastructure.Identity
             this.jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public async Task<Result> Register(UserInputModel userInput)
+        public async Task<Result<IUser>> Register(UserInputModel userInput)
         {
             var user = new User(userInput.Email);
 
@@ -42,8 +37,8 @@ namespace ApartmentRentingSystem.Infrastructure.Identity
             var errors = identityResult.Errors.Select(e => e.Description);
 
             return identityResult.Succeeded
-                ? Result.Success
-                : Result.Failure(errors);
+                ? Result<IUser>.SuccessWith(user)
+                : Result<IUser>.Failure(errors);
         }
 
         public async Task<Result<LoginSuccessModel>> Login(UserInputModel userInput)
@@ -64,6 +59,5 @@ namespace ApartmentRentingSystem.Infrastructure.Identity
 
             return new LoginSuccessModel(user.Id, token);
         }
-        
     }
 }

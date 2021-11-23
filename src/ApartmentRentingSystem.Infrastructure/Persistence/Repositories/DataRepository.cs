@@ -25,5 +25,14 @@
         {
             return this.Data.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task Save(
+            TEntity entity,
+            CancellationToken cancellationToken = default)
+        {
+            this.Data.Update(entity);
+
+            await this.Data.SaveChangesAsync(cancellationToken);
+        }
     }
 }

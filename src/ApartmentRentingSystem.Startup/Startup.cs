@@ -1,7 +1,3 @@
-using ApartmentRentingSystem.Application;
-using ApartmentRentingSystem.Domain;
-using ApartmentRentingSystem.Web;
-
 namespace ApartmentRentingSystem.Startup
 {
     using Microsoft.AspNetCore.Builder;
@@ -10,6 +6,9 @@ namespace ApartmentRentingSystem.Startup
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Infrastructure;
+    using Application;
+    using Domain;
+    using Web;
 
     public class Startup
     {
@@ -42,10 +41,7 @@ namespace ApartmentRentingSystem.Startup
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

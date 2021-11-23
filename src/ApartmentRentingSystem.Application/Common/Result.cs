@@ -1,10 +1,10 @@
-namespace ApartmentRentingSystem.Application
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-    public class Result
+namespace ApartmentRentingSystem.Application.Common
+{
+     public class Result
     {
         private readonly List<string> errors;
 

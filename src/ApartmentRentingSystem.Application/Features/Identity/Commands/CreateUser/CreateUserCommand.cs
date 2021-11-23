@@ -4,24 +4,57 @@ namespace ApartmentRentingSystem.Application.Features.Identity.Commands.CreateUs
     using System.Threading.Tasks;
     using Contracts;
     using MediatR;
+    using Common;
+    using Landlords;
+    using Domain.Factories.Landlords;
 
     public class CreateUserCommand : UserInputModel, IRequest<Result>
     {
-        public CreateUserCommand(string email, string password)
-            : base(email, password)
-        {
-        }
+        public string Name { get; set; } = default!;
+
+        public string Number { get; set; } = default!;
+        
+        public string CountryCode { get; set; } = default!;
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result>
         {
             private readonly IIdentity identity;
+            private readonly ILandlordFactory landlordFactory;
+            private readonly ILandlordRepository landlordRepository;
 
-            public CreateUserCommandHandler(IIdentity identity) => this.identity = identity;
+            public CreateUserCommandHandler(IIdentity identity,
+                ILandlordFactory landlordFactory,
+                ILandlordRepository landlordRepository)
+            {
+                this.identity = identity;
+                this.landlordFactory = landlordFactory;
+                this.landlordRepository = landlordRepository;
+            }
 
-            public Task<Result> Handle(
+            public async Task<Result> Handle(
                 CreateUserCommand request,
                 CancellationToken cancellationToken)
-                => this.identity.Register(request);
+            {
+                var result = await this.identity.Register(request);
+
+                if (!result.Succeeded)
+                {
+                    return result;
+                }
+
+                var user = result.Data;
+
+                var landlord = this.landlordFactory
+                    .WithName(request.Name)
+                    .WithPhoneNumber(request.CountryCode, request.Number)
+                    .Build();
+                
+                user.BecomeLandlord(landlord);
+                
+                await this.landlordRepository.Save(landlord);
+                
+                return result;
+            }
         }
     }
 }

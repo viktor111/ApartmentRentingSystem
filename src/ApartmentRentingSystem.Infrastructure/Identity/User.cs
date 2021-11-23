@@ -3,8 +3,10 @@ namespace ApartmentRentingSystem.Infrastructure.Identity
     using Domain.Exceptions;
     using Domain.Models.Landlords;
     using Microsoft.AspNetCore.Identity;
+    using Application.Features.Identity;
 
-    public class User : IdentityUser
+
+    public class User : IdentityUser, IUser
     {
         internal User(string email)
             : base(email)

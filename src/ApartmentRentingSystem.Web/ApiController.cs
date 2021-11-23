@@ -6,8 +6,9 @@ namespace ApartmentRentingSystem.Web
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
     using Common;
+    using Application.Common;
 
-    
+
     [ApiController]
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase

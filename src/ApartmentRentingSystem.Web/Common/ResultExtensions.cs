@@ -1,8 +1,8 @@
 ﻿namespace ApartmentRentingSystem.Web.Common
 {
     using System.Threading.Tasks;
-    using Application;
     using Microsoft.AspNetCore.Mvc;
+    using Application.Common;
 
     public static class ResultExtensions
     {
@@ -26,7 +26,7 @@
             {
                 return new BadRequestObjectResult(result.Errors);
             }
-            
+
             return new OkResult();
         }
 
