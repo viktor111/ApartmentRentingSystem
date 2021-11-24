@@ -2,9 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <LangVersion>8.0</LangVersion>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectCapability Include="DynamicFileNesting" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ApartmentRentingSystem.Domain\ApartmentRentingSystem.Domain.csproj" />
