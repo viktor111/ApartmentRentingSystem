@@ -25,7 +25,12 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
         {
             return this.FindByUser(userId, user => user.Landlord!.Id, cancellationToken);
         }
-        
+
+        public Task<Landlord> FindByUser(string userId, CancellationToken cancellationToken = default)
+        {
+            return this.FindByUser(userId, user => user.Landlord!, cancellationToken);
+        }
+
         private async Task<T> FindByUser<T>(
             string userId,
             Expression<Func<User, T>> selector,

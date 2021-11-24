@@ -8,7 +8,7 @@ namespace ApartmentRentingSystem.Application.Features.Landlords
     public interface ILandlordRepository : IRepository<Landlord>
     {
         Task<int> GetLandlordId(string userId, CancellationToken cancellationToken = default);
-        
-        
+
+        Task<Landlord> FindByUser(string userId, CancellationToken cancellationToken = default);
     }
 }
