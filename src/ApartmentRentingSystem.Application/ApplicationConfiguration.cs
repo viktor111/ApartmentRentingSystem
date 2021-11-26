@@ -1,5 +1,5 @@
-
 using System.Reflection;
+using ApartmentRentingSystem.Application.Behaviours;
 using MediatR;
 
 namespace ApartmentRentingSystem.Application
@@ -14,8 +14,9 @@ namespace ApartmentRentingSystem.Application
             IConfiguration configuration)
             => services
                 .Configure<ApplicationSettings>(
-                    configuration.GetSection(nameof(ApplicationSettings)), 
+                    configuration.GetSection(nameof(ApplicationSettings)),
                     options => options.BindNonPublicProperties = true)
-                .AddMediatR(Assembly.GetExecutingAssembly());
+                .AddMediatR(Assembly.GetExecutingAssembly())
+                .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
     }
 }
