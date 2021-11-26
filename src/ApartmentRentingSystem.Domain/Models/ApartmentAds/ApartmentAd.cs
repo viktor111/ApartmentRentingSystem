@@ -72,6 +72,12 @@
             this.Title = title;
             return this;
         }
+        
+        public ApartmentAd UpdateAddress(string country, string city, string street)
+        {
+            this.Address = new Address(country, city, street);
+            return this;
+        }
 
         public ApartmentAd UpdateDescription(string description)
         {
@@ -94,15 +100,52 @@
             return this;
         }
         
-        public ApartmentAd UpdateOptions(Options options)
+        public ApartmentAd UpdateOptions(
+            bool hasFurniture,
+            bool hasParking,
+            bool hasGarden,
+            bool hasLift,
+            bool hasAirConditioner,
+            bool hasTv,
+            bool hasInternet,
+            bool hasPhone,
+            bool hasWashingMachine,
+            bool hasDishwasher,
+            bool hasRefrigerator,
+            bool hasMicrowave,
+            bool hasOven,
+            bool hasCoffeeMachine)
         {
-            this.Options = options;
+            this.Options = new Options(hasFurniture,
+                hasParking,
+                hasGarden,
+                hasLift,
+                hasAirConditioner,
+                hasTv,
+                hasInternet,
+                hasPhone,
+                hasWashingMachine,
+                hasDishwasher,
+                hasRefrigerator,
+                hasMicrowave,
+                hasOven,
+                hasCoffeeMachine);
+            
             return this;
         }
         
-        public ApartmentAd UpdateRooms(Rooms rooms)
+        public ApartmentAd UpdateRooms(
+            int numberOfRooms,
+            int numberOfBathrooms,
+            int numberOfBedrooms,
+            int numberOfBalconies)
         {
-            this.Rooms = rooms;
+            this.Rooms = new Rooms(
+                numberOfRooms,
+                numberOfBathrooms,
+                numberOfBedrooms,
+                numberOfBalconies);
+            
             return this;
         }
         

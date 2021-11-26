@@ -10,5 +10,7 @@ namespace ApartmentRentingSystem.Application.Features.Landlords
         Task<int> GetLandlordId(string userId, CancellationToken cancellationToken = default);
 
         Task<Landlord> FindByUser(string userId, CancellationToken cancellationToken = default);
+        
+        Task<bool> HasApartment(int landlordId, int apartmentId, CancellationToken cancellationToken = default);
     }
 }

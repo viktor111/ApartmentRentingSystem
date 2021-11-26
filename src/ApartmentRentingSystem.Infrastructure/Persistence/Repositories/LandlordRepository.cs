@@ -31,6 +31,15 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
             return this.FindByUser(userId, user => user.Landlord!, cancellationToken);
         }
 
+        public Task<bool> HasApartment(int landlordId, int apartmentId, CancellationToken cancellationToken = default)
+        {
+            return this
+                .All()
+                .Where(l => l.Id == landlordId)
+                .AnyAsync(l => l.ApartmentAds
+                    .Any(a => a.Id == apartmentId), cancellationToken);
+        }
+
         private async Task<T> FindByUser<T>(
             string userId,
             Expression<Func<User, T>> selector,

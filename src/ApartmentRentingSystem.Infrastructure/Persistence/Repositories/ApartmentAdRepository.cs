@@ -37,8 +37,15 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
                 ))
                 .ToListAsync(cancellationToken);
         }
-        
-       
+
+        public Task<ApartmentAd> Find(int id, CancellationToken cancellationToken = default)
+        {
+            return this
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id, 
+                    cancellationToken);
+        }
+
 
         public async Task<int> Total(CancellationToken cancellationToken = default)
         {

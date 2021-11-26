@@ -11,6 +11,9 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds
     {
         Task<IEnumerable<ApartmnetAdListingModel>> GetApartmentAdListings(string? title = default,
             CancellationToken cancellationToken = default);
+        
+        Task<ApartmentAd> Find(int id, 
+            CancellationToken cancellationToken = default);
 
         Task<int> Total(CancellationToken cancellationToken = default);
     }
