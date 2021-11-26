@@ -1,4 +1,5 @@
 ﻿using ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Create;
+using ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit;
 
 namespace ApartmentRentingSystem.Web.Features
 {
@@ -13,14 +14,20 @@ namespace ApartmentRentingSystem.Web.Features
         [HttpGet]
         public async Task<ActionResult<SearchApartmentAdsOutputModel>> Search([FromQuery] SearchApartmentAdsQuery query)
         {
-            return await this.Mediator.Send(query);
+            return await this.Send(query);
         }
 
         [HttpPost]
         public async Task<ActionResult<CreateApartmentAdOutputModel>> Create(
             [FromQuery] CreateApartmentAdCommand command)
         {
-            return await this.Mediator.Send(command);
+            return await this.Send(command);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id, EditApartmentAdCommand command)
+        {
+            return await this.Send(command);
         }
     }
 }
