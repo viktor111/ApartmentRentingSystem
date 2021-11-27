@@ -1,25 +1,23 @@
-using System.Threading;
-using System.Threading.Tasks;
-using ApartmentRentingSystem.Application.Common;
-using ApartmentRentingSystem.Application.Contracts;
-using ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Common;
-using ApartmentRentingSystem.Application.Features.Landlords;
-using ApartmentRentingSystem.Domain.Models.ApartmentAds;
-using MediatR;
-
 namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit
 {
-    public class EditApartmentAdCommand : ApartmentAdCommand<EditApartmentAdCommand> , IRequest<Result>
+    using System.Threading;
+    using System.Threading.Tasks;
+    using ApartmentRentingSystem.Application.Common;
+    using Contracts;
+    using Common;
+    using Landlords;
+    using MediatR;
+
+    public class EditApartmentAdCommand : ApartmentAdCommand<EditApartmentAdCommand>, IRequest<Result>
     {
         public class EditApartmentAdCommandHandler : IRequestHandler<EditApartmentAdCommand, Result>
         {
-            
             private readonly IApartmentAdRepository apartmentAdRepository;
             private readonly ICurrentUser currentUser;
             private readonly ILandlordRepository landlordRepository;
 
             public EditApartmentAdCommandHandler(
-                IApartmentAdRepository apartmentAdRepository, 
+                IApartmentAdRepository apartmentAdRepository,
                 ICurrentUser currentUser,
                 ILandlordRepository landlordRepository)
             {
@@ -29,19 +27,19 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit
             }
 
             public async Task<Result> Handle(
-                EditApartmentAdCommand request, 
+                EditApartmentAdCommand request,
                 CancellationToken cancellationToken)
             {
                 var landlordHasApartmentAd = await this.currentUser
                     .LandlordHasApartmentAd(
-                        this.landlordRepository, 
-                        request.Id, 
+                        this.landlordRepository,
+                        request.Id,
                         cancellationToken);
                 if (!landlordHasApartmentAd)
                 {
                     return landlordHasApartmentAd;
                 }
-                
+
                 var apartmentAd = await this.apartmentAdRepository
                     .Find(request.Id, cancellationToken);
 
@@ -51,7 +49,7 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit
                     .UpdatePrice(request.Price)
                     .UpdateSquareMeters(request.SquareMeters)
                     .UpdateAddress(
-                        request.Country, 
+                        request.Country,
                         request.City,
                         request.Street)
                     .UpdateRooms(
@@ -59,7 +57,7 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit
                         request.NumberOfBathrooms,
                         request.NumberOfBedrooms,
                         request.NumberOfBalconies)
-                    .UpdateOptions( request.HasFurniture,
+                    .UpdateOptions(request.HasFurniture,
                         request.HasParking,
                         request.HasGarden,
                         request.HasLift,
@@ -73,9 +71,9 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Edit
                         request.HasMicrowave,
                         request.HasOven,
                         request.HasCoffeeMachine);
-                
+
                 await this.apartmentAdRepository.Save(apartmentAd, cancellationToken);
-                
+
                 return Result.Success;
             }
         }

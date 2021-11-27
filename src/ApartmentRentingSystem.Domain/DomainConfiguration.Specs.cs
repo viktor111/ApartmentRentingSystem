@@ -1,7 +1,4 @@
-﻿using ApartmentRentingSystem.Domain.Factories.ApartmentAds;
-using ApartmentRentingSystem.Domain.Factories.Landlords;
-
-namespace ApartmentRentingSystem.Domain
+﻿namespace ApartmentRentingSystem.Domain
 {
     using Factories.ApartmentAds;
     using Factories.Landlords;

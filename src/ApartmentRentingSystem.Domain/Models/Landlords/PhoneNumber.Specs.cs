@@ -29,7 +29,7 @@
         {
             // Arrange
             var phoneNumber = A.Dummy<PhoneNumber>();
-            string countryCode = String.Empty;
+            string countryCode = string.Empty;
             
             // Act
             Action action = () => phoneNumber.UpdateCountryCode(countryCode);
@@ -85,7 +85,7 @@
         {
             // Arrange
             var phoneNumber = A.Dummy<PhoneNumber>();
-            string number = String.Empty;
+            string number = string.Empty;
             
             // Act
             Action action = () => phoneNumber.UpdateNumber(number);

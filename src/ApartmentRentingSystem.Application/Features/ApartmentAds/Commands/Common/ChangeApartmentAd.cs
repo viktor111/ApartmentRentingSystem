@@ -1,13 +1,11 @@
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using ApartmentRentingSystem.Application.Common;
-using ApartmentRentingSystem.Application.Contracts;
-using ApartmentRentingSystem.Application.Features.Landlords;
-
 namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Common
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using ApartmentRentingSystem.Application.Common;
+    using Contracts;
+    using Landlords;
+
     internal static class ChangeApartmentAdExtensions
     {
         public static async Task<Result> LandlordHasApartmentAd(
@@ -15,19 +13,19 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Comm
             ILandlordRepository landlordRepository,
             int apartmentAdId,
             CancellationToken cancellationToken
-            )
+        )
         {
             var landlordId = await landlordRepository
                 .GetLandlordId(
-                    currentUser.userId, 
+                    currentUser.userId,
                     cancellationToken);
-            
+
             var landlordHasApartmentAd = await landlordRepository
                 .HasApartment(
                     landlordId,
                     apartmentAdId,
                     cancellationToken);
-            
+
             return landlordHasApartmentAd
                 ? Result.Success
                 : "You cannot edit this apartment ad.";

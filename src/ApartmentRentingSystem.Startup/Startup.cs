@@ -1,3 +1,5 @@
+using ApartmentRentingSystem.Web.Middleware;
+
 namespace ApartmentRentingSystem.Startup
 {
     using Microsoft.AspNetCore.Builder;
@@ -35,13 +37,26 @@ namespace ApartmentRentingSystem.Startup
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseValidationExceptionHandler();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyMethod();
+                opt.AllowAnyOrigin();
+                opt.AllowAnyHeader();
+            });
+
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.Initialize();
         }
     }
 }

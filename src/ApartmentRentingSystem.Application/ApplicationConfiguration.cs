@@ -1,11 +1,10 @@
-using System.Reflection;
-using ApartmentRentingSystem.Application.Behaviours;
-using MediatR;
-
 namespace ApartmentRentingSystem.Application
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using System.Reflection;
+    using Behaviours;
+    using MediatR;
 
     public static class ApplicationConfiguration
     {
@@ -16,6 +15,7 @@ namespace ApartmentRentingSystem.Application
                 .Configure<ApplicationSettings>(
                     configuration.GetSection(nameof(ApplicationSettings)),
                     options => options.BindNonPublicProperties = true)
+                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(Assembly.GetExecutingAssembly())
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
     }

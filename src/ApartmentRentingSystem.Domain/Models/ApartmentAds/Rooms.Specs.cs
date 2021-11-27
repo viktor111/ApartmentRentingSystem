@@ -43,10 +43,9 @@
         {
             // Arrange
             var rooms = A.Dummy<Rooms>();
-            var numberOfRooms = MaxNumberOfRooms;
 
             // Act
-            Action action = () => rooms.UpdateNumberOfRooms(numberOfRooms + 1);
+            Action action = () => rooms.UpdateNumberOfRooms(MaxNumberOfRooms + 1);
 
             // Assert
             action.Should().Throw<InvalidRoomsException>();
@@ -85,10 +84,9 @@
         {
             // Arrange
             var rooms = A.Dummy<Rooms>();
-            var numberOfBathrooms = MaxNumberOfBathrooms;
 
             // Act
-            Action action = () => rooms.UpdateNumberOfBathrooms(numberOfBathrooms + 1);
+            Action action = () => rooms.UpdateNumberOfBathrooms(MaxNumberOfBathrooms + 1);
 
             // Assert
             action.Should().Throw<InvalidRoomsException>();
@@ -128,10 +126,9 @@
         {
             // Arrange
             var rooms = A.Dummy<Rooms>();
-            var numberOfBedrooms = MaxNumberOfBedrooms;
 
             // Act
-            Action action = () => rooms.UpdateNumberOfBedrooms(numberOfBedrooms + 1);
+            Action action = () => rooms.UpdateNumberOfBedrooms(MaxNumberOfBedrooms + 1);
 
             // Assert
             action.Should().Throw<InvalidRoomsException>();
@@ -171,10 +168,9 @@
         {
             // Arrange
             var rooms = A.Dummy<Rooms>();
-            var numberOfBalconies = MaxNumberOfBalconies;
 
             // Act
-            Action action = () => rooms.UpdateNumberOfBalconies(numberOfBalconies + 1);
+            Action action = () => rooms.UpdateNumberOfBalconies(MaxNumberOfBalconies + 1);
 
             // Assert
             action.Should().Throw<InvalidRoomsException>();

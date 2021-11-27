@@ -9,7 +9,9 @@ namespace ApartmentRentingSystem.Application.Exceptions
     {
         public ModelValidationException()
             : base("One or more validation errors have occurred.")
-            => this.Errors = new Dictionary<string, string[]>();
+        {
+            this.Errors = new Dictionary<string, string[]>();
+        }
 
         public ModelValidationException(IEnumerable<ValidationFailure> errors)
             : this()
