@@ -42,7 +42,7 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
         {
             return this
                 .All()
-                .FirstOrDefaultAsync(a => a.Id == id, 
+                .FirstOrDefaultAsync(a => a.Id == id,
                     cancellationToken);
         }
 
@@ -54,11 +54,28 @@ namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
                 .CountAsync(cancellationToken);
         }
 
+        public async Task<bool> Delete(int id, CancellationToken cancellationToken = default)
+        {
+            var apartmentAd = await this.Data.ApartmentAds
+                .FindAsync(id, cancellationToken);
+
+            if (apartmentAd == null)
+            {
+                return false;
+            }
+
+            this.Data.ApartmentAds
+                .Remove(apartmentAd);
+
+            await this.Data
+                .SaveChangesAsync(cancellationToken);
+
+            return true;
+        }
+
         private IQueryable<ApartmentAd> AllAvailable()
             => this
                 .All()
                 .Where(a => a.IsAvailable);
-        
-        
     }
 }

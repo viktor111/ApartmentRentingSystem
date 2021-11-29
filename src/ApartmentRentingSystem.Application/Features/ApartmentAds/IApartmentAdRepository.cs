@@ -16,5 +16,8 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds
             CancellationToken cancellationToken = default);
 
         Task<int> Total(CancellationToken cancellationToken = default);
+        
+        Task<bool> Delete(int id, 
+            CancellationToken cancellationToken = default);
     }
 }
