@@ -1,10 +1,6 @@
-using ApartmentRentingSystem.Domain.Models.ApartmentAds;
-
 namespace ApartmentRentingSystem.Startup.Specs
 {
     using Application.Features.ApartmentAds.Queries.Search;
-    using Application.Features.ApartmentAds.Commands.Create;
-    using Application.Features.ApartmentAds.Commands.Edit;
     using Web.Features;
     using MyTested.AspNetCore.Mvc;
     using Xunit;

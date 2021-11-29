@@ -6,7 +6,6 @@
     using Application.Features.ApartmentAds.Commands.Create;
     using Application.Features.ApartmentAds.Commands.Edit;
 
-    [ApiController]
     [Route("api/[controller]")]
     public class ApartmentAdsController : ApiController
     {
@@ -17,7 +16,7 @@
         }
 
         [HttpPost(nameof(Create))]
-        public async Task<ActionResult<CreateApartmentAdOutputModel>> Create([FromBody]CreateApartmentAdCommand command)
+        public async Task<ActionResult<CreateApartmentAdOutputModel>> Create(CreateApartmentAdCommand command)
         {
             return await this.Send(command);
         }
@@ -26,6 +25,14 @@
         public async Task<ActionResult> Edit(int id, EditApartmentAdCommand command)
         {
             return await this.Send(command);
+        }
+
+        [HttpPost(nameof(Test))]
+        public ActionResult Test([FromBody]decimal price)
+        {
+            var req = HttpContext.Request;
+            
+            return Ok();
         }
     }
 }

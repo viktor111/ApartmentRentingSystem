@@ -1,5 +1,3 @@
-using ApartmentRentingSystem.Web.Middleware;
-
 namespace ApartmentRentingSystem.Startup
 {
     using Microsoft.AspNetCore.Builder;
@@ -9,6 +7,7 @@ namespace ApartmentRentingSystem.Startup
     using Microsoft.Extensions.Hosting;
     using Infrastructure;
     using Application;
+    using Web.Middleware;
     using Domain;
     using Web;
 
@@ -35,6 +34,15 @@ namespace ApartmentRentingSystem.Startup
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger(opt =>
+                {
+                    
+                });
+                app.UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+                    opt.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseValidationExceptionHandler();

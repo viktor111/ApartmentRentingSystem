@@ -1,16 +1,16 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using ApartmentRentingSystem.Application.Exceptions;
-using ApartmentRentingSystem.Domain.Exceptions;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
 namespace ApartmentRentingSystem.Web.Middleware
 {
-   public class ValidationExceptionHandlerMiddleware
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Application.Exceptions;
+    using Domain.Exceptions;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Http;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+
+    public class ValidationExceptionHandlerMiddleware
     {
         private readonly RequestDelegate next;
 
@@ -47,7 +47,7 @@ namespace ApartmentRentingSystem.Web.Middleware
                     break;
                 case NullReferenceException _:
                     code = HttpStatusCode.BadRequest;
-                    result = SerializeObject(new[] { "Invalid request." });
+                    result = SerializeObject(new[] {"Invalid request."});
                     break;
                 case NotFoundException _:
                     code = HttpStatusCode.NotFound;
@@ -55,7 +55,7 @@ namespace ApartmentRentingSystem.Web.Middleware
             }
 
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)code;
+            context.Response.StatusCode = (int) code;
 
             if (string.IsNullOrEmpty(result))
             {
@@ -66,7 +66,7 @@ namespace ApartmentRentingSystem.Web.Middleware
                     error = baseDomainException.Error;
                 }
 
-                result = SerializeObject(new[] { error });
+                result = SerializeObject(new[] {error});
             }
 
             return context.Response.WriteAsync(result);

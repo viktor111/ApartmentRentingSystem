@@ -11,7 +11,6 @@ namespace ApartmentRentingSystem.Startup
     using Microsoft.AspNetCore.Mvc.Controllers;
     using MyTested.AspNetCore.Mvc;
 
-
     public class TestStartup : Startup
     {
         public TestStartup(IConfiguration configuration)
