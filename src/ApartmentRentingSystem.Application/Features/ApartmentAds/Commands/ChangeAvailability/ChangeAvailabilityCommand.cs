@@ -6,18 +6,18 @@ using ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Common;
 using ApartmentRentingSystem.Application.Features.Landlords;
 using MediatR;
 
-namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Delete
+namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.ChangeAvailability
 {
-    public class DeleteApartmentAdCommand : EntityCommand<int>, IRequest<Result>
+    public class ChangeAvailabilityCommand : EntityCommand<int>, IRequest<Result>
     {
-        public class DeleteApartmentAdCommandHandler: IRequestHandler<DeleteApartmentAdCommand, Result>
+        public class ChangeAvailabilityCommandHandler : IRequestHandler<ChangeAvailabilityCommand, Result>
         {
             private readonly ICurrentUser currentUser;
             private readonly IApartmentAdRepository apartmentAdRepository;
             private readonly ILandlordRepository landlordRepository;
-            
-            public DeleteApartmentAdCommandHandler(
-                ICurrentUser currentUser,
+
+            public ChangeAvailabilityCommandHandler(
+                ICurrentUser currentUser, 
                 IApartmentAdRepository apartmentAdRepository,
                 ILandlordRepository landlordRepository)
             {
@@ -25,24 +25,29 @@ namespace ApartmentRentingSystem.Application.Features.ApartmentAds.Commands.Dele
                 this.apartmentAdRepository = apartmentAdRepository;
                 this.landlordRepository = landlordRepository;
             }
-            
+
             public async Task<Result> Handle(
-                DeleteApartmentAdCommand request,
+                ChangeAvailabilityCommand request,
                 CancellationToken cancellationToken)
             {
                 var landlordHasApartmentAd = await this.currentUser.LandlordHasApartmentAd(
                     this.landlordRepository, 
                     request.Id,
                     cancellationToken);
-                
-                if(!landlordHasApartmentAd)
+
+                if (!landlordHasApartmentAd)
                 {
                     return landlordHasApartmentAd;
                 }
                 
-                return await this.apartmentAdRepository.Delete(
-                    request.Id,
-                    cancellationToken);
+                var apartmentAd = await this.apartmentAdRepository
+                    .Find(request.Id, cancellationToken);
+                
+                apartmentAd.ChangeAvailability();
+                
+                await this.apartmentAdRepository.Save(apartmentAd, cancellationToken);
+                
+                return Result.Success;
             }
         }
     }
