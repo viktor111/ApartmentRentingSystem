@@ -1,4 +1,7 @@
-﻿namespace ApartmentRentingSystem.Web.Features
+﻿using ApartmentRentingSystem.Domain.Factories.ApartmentAds;
+using ApartmentRentingSystem.Domain.Models.ApartmentAds;
+
+namespace ApartmentRentingSystem.Web.Features
 {
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
