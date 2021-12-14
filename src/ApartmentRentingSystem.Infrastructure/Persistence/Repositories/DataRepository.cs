@@ -1,4 +1,4 @@
-﻿namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
+﻿    namespace ApartmentRentingSystem.Infrastructure.Persistence.Repositories
 {
     using System.Linq;
     using System.Threading;

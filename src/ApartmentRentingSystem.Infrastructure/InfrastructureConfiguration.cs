@@ -1,6 +1,4 @@
-﻿using ApartmentRentingSystem.Application.Features.Identity;
-
-namespace ApartmentRentingSystem.Infrastructure
+﻿namespace ApartmentRentingSystem.Infrastructure
 {
     using System.Text;
     using Application;
@@ -13,7 +11,7 @@ namespace ApartmentRentingSystem.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using Persistence;
-    using Persistence.Repositories;
+    using Application.Features.Identity;
 
     public static class InfrastructureConfiguration
     {
